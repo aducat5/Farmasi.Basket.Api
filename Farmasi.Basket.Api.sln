@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farmasi.Basket.Api", "Farma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farmasi.Basket.Model", "Farmasi.Basket.Model\Farmasi.Basket.Model.csproj", "{9F0FC6DA-9726-442C-A126-3DC6C723FC89}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farmasi.Basket.Data", "Farmasi.Basket.Data\Farmasi.Basket.Data.csproj", "{2CFB23EC-4D44-492E-B269-29C11DC69C92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9F0FC6DA-9726-442C-A126-3DC6C723FC89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F0FC6DA-9726-442C-A126-3DC6C723FC89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F0FC6DA-9726-442C-A126-3DC6C723FC89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CFB23EC-4D44-492E-B269-29C11DC69C92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CFB23EC-4D44-492E-B269-29C11DC69C92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CFB23EC-4D44-492E-B269-29C11DC69C92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CFB23EC-4D44-492E-B269-29C11DC69C92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
