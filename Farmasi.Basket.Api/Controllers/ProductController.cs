@@ -9,10 +9,12 @@ namespace Farmasi.Basket.Api.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ProductService _productService;
+        private readonly CartService _cartService;
 
-        public ProductController(ProductService productService)
+        public ProductController(ProductService productService, CartService cartService)
         {
             _productService = productService;
+            _cartService = cartService;
         }
 
         [HttpGet("get-all")]
@@ -27,6 +29,14 @@ namespace Farmasi.Basket.Api.Controllers
         public async Task<ActionResult> NewProduct(Product newProduct)
         {
             await _productService.AddProduct(newProduct);
+
+            return Ok();
+        }
+
+        [HttpPost("add-to-cart")]
+        public async Task<ActionResult> AddToCart(Product product, string userId)
+        {
+            await _cartService.AddToCartAsync(product, userId);
 
             return Ok();
         }

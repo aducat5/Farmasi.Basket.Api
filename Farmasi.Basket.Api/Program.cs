@@ -14,6 +14,7 @@ builder.Services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOp
 
 //adding redis connection
 builder.Services.AddSingleton(new RedisConnectionProvider(builder.Configuration["REDIS_CONNECTION_STRING"]));
+builder.Services.AddHostedService<IndexCreationService>();
 
 //adding product services
 builder.Services.AddScoped<ProductService>();

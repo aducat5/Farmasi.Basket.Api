@@ -18,16 +18,7 @@ namespace Farmasi.Basket.Data.Services
         }
         public async Task<List<Product>> GetAllAsync()
         {
-            try
-            {
-
-                return await _products.Find(p => p.IsDeleted == false).ToListAsync();
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            return await _products.Find(p => p.IsDeleted == false).ToListAsync();
         }
         public async Task<Product> GetProduct(string productId)
         {

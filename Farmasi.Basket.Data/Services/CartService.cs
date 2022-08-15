@@ -22,19 +22,27 @@ namespace Farmasi.Basket.Data.Services
         public async Task AddToCartAsync(Product product, string userId)
         {
             //check basket, create if not exist
+            try
+            {
 
-            var cart = _carts.Where(c => c.UserId == userId).FirstOrDefault();
-            
-            if (cart == null) await _carts.InsertAsync(new()
+                var cart = _carts.Where(c => c.UserId == userId).FirstOrDefault();
+
+                if (cart == null) await _carts.InsertAsync(new()
                 {
                     Products = new(),
                     UserId = userId
                 });
 
-            cart = _carts.Where(c => c.UserId == userId).FirstOrDefault();
-            cart!.Products.Add(product);
+                cart = _carts.Where(c => c.UserId == userId).FirstOrDefault();
+                cart!.Products.Add(product);
 
-            await _carts.UpdateAsync(cart);
+                await _carts.UpdateAsync(cart);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
     }
 }
