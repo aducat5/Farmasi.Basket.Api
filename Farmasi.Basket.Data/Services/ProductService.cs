@@ -16,6 +16,17 @@ namespace Farmasi.Basket.Data.Services
             var database = client.GetDatabase(settings.DatabaseName);
             _products = database.GetCollection<Product>(settings.CollectionName);
         }
-
+        public async Task<List<Product>> GetAllAsync()
+        {
+            return await _products.Find(w => true).ToListAsync();
+        }
+        public async Task<Product> GetProduct(string productId)
+        {
+            return await _products.Find(w => w.Id == productId).FirstOrDefaultAsync();
+        }
+        public void AddProduct(Product newProduct)
+        {
+            //
+        }
     }
 }
