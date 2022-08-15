@@ -1,3 +1,4 @@
+using Farmasi.Basket.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Farmasi.Basket.Api.Controllers
@@ -11,6 +12,18 @@ namespace Farmasi.Basket.Api.Controllers
         public ProductController(ILogger<ProductController> logger)
         {
             _logger = logger;
+        }
+
+        [HttpGet("get-all")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetAll()
+        {
+            var warehouses = await _warehouseService.GetAllAsync();
+            var response = new ResponseModel()
+            {
+                Data = warehouses,
+                RequestCount = _requestHandler.RequestCount
+            };
+            return Ok(response);
         }
 
     }
