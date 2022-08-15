@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="Redis.OM" Version="0.2.1" />
-    <PackageReference Include="StackExchange.Redis" Version="2.6.48" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.0" />
   </ItemGroup>

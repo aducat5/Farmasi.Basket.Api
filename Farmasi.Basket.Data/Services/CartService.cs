@@ -25,15 +25,15 @@ namespace Farmasi.Basket.Data.Services
             try
             {
 
-                var cart = _carts.Where(c => c.UserId == userId).FirstOrDefault();
+                var cart = _carts.Where(c => c.UserIdentifier == userId).FirstOrDefault();
 
                 if (cart == null) await _carts.InsertAsync(new()
                 {
                     Products = new(),
-                    UserId = userId
+                    UserIdentifier = userId
                 });
 
-                cart = _carts.Where(c => c.UserId == userId).FirstOrDefault();
+                cart = _carts.Where(c => c.UserIdentifier == userId).FirstOrDefault();
                 cart!.Products.Add(product);
 
                 await _carts.UpdateAsync(cart);
