@@ -8,12 +8,10 @@ namespace Farmasi.Basket.Api.Controllers
     [Route("[controller]")]
     public class ProductController : ControllerBase
     {
-        private readonly ILogger<ProductController> _logger;
         private readonly ProductService _productService;
 
-        public ProductController(ILogger<ProductController> logger, ProductService productService)
+        public ProductController(ProductService productService)
         {
-            _logger = logger;
             _productService = productService;
         }
 
