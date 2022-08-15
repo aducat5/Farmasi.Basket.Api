@@ -33,8 +33,9 @@ namespace Farmasi.Basket.Data.Services
         {
             return await _products.Find(w => w.Id == productId).FirstOrDefaultAsync();
         }
-        public void AddProduct(Product newProduct)
+        public async Task AddProduct(Product newProduct)
         {
+            await _products.InsertOneAsync(newProduct);
             //
         }
     }

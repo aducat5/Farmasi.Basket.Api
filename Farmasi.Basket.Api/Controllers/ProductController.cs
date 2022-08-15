@@ -23,5 +23,12 @@ namespace Farmasi.Basket.Api.Controllers
             return Ok(products);
         }
 
+        [HttpPost("new-product")]
+        public async Task<ActionResult> NewProduct(Product newProduct)
+        {
+            await _productService.AddProduct(newProduct);
+
+            return Ok();
+        }
     }
 }
