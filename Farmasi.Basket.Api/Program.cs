@@ -1,21 +1,23 @@
 using Farmasi.Basket.Data;
 using Farmasi.Basket.Data.Services;
 using Microsoft.Extensions.Options;
+using Redis.OM;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+// adding mongo connection
 // requires using Microsoft.Extensions.Options
-builder.Services.Configure<DatabaseSettings>(
-    builder.Configuration.GetSection(nameof(DatabaseSettings)));
+builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
+builder.Services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
 
-builder.Services.AddSingleton<IDatabaseSettings>(sp =>
-    sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+//adding redis connection
+builder.Services.AddSingleton(new RedisConnectionProvider(builder.Configuration["REDIS_CONNECTION_STRING"]));
 
 //adding product services
 builder.Services.AddScoped<ProductService>();
-builder.Services.AddScoped<BasketService>();
+builder.Services.AddScoped<CartService>();
 
 //adding controllers
 builder.Services.AddControllers();
