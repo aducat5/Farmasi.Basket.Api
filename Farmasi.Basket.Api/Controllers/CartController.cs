@@ -36,9 +36,9 @@ namespace Farmasi.Basket.Api.Controllers
         }
 
         [HttpPost("remove-from-cart")]
-        public async Task<ActionResult> RemoveFromCart(Product product, string userId)
+        public async Task<ActionResult> RemoveFromCart(string productId, string userId)
         {
-            await _cartService.AddToCartAsync(product, userId);
+            await _cartService.RemoveFromCartAsync(productId, userId);
             return Ok();
         }
     }

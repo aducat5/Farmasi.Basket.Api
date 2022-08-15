@@ -26,7 +26,7 @@ namespace Farmasi.Basket.Data.Services
         {
             //check basket, create if not exist
 
-            var cart = _carts.Where(c => c.UserIdentifier == userId).FirstOrDefault();
+            var cart = await _carts.Where(c => c.UserIdentifier == userId).FirstOrDefaultAsync();
 
             if (cart == null) await _carts.InsertAsync(new()
             {
@@ -34,10 +34,24 @@ namespace Farmasi.Basket.Data.Services
                 UserIdentifier = userId
             });
 
-            cart = _carts.Where(c => c.UserIdentifier == userId).FirstOrDefault();
+            cart = await _carts.Where(c => c.UserIdentifier == userId).FirstOrDefaultAsync();
+
             cart!.Products.Add(product);
 
-            await _carts.UpdateAsync(cart);
+            _carts.Update(cart);
+        }
+        public async Task RemoveFromCartAsync(string productId, string userId)
+        {
+            var cart = await _carts.Where(c => c.UserIdentifier == userId).FirstOrDefaultAsync();
+
+            if (cart == null) return;
+
+            var product = cart.Products.Where(p => p.Id == productId).FirstOrDefault();
+            if (product == null) return;
+
+            cart.Products.Remove(product);
+
+            _carts.Update(cart);
         }
     }
 }

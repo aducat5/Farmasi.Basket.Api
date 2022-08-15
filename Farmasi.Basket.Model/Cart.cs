@@ -8,21 +8,6 @@ using System.Threading.Tasks;
 namespace Farmasi.Basket.Model
 {
 
-    //[Document(StorageType = StorageType.Json, Prefixes = new[] { "Cart" })]
-    //public record Cart
-    //{
-
-    //    [RedisIdField]
-    //    [Indexed] 
-    //    public string? Id { get; set; }
-
-    //    [Indexed]
-    //    [Searchable]
-    //    public string UserId { get; set; } = "";
-        
-    //    public List<Product> Products { get; set; } = new List<Product>();
-    //}
-
     [Document(StorageType = StorageType.Json, Prefixes = new[] { "Cart" })]
     public class Cart
     {
@@ -31,7 +16,9 @@ namespace Farmasi.Basket.Model
 
         // Indexed for exact text matching
         [Indexed] public string? UserIdentifier { get; set; }
-        public List<Product> Products { get; set; } = new List<Product>();
+
+
+        [Indexed] public List<Product> Products { get; set; } = new List<Product>();
 
     }
 }
