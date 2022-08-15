@@ -18,31 +18,26 @@ namespace Farmasi.Basket.Data.Services
             _carts = (RedisCollection<Cart>)provider.RedisCollection<Cart>();
         }
 
+        
+        public async Task<Cart> GetCartAsync(string userId) => await _carts.Where(c => c.UserIdentifier == userId).FirstOrDefaultAsync();
+        public RedisCollection<Cart> GetAll() => _carts;
 
         public async Task AddToCartAsync(Product product, string userId)
         {
             //check basket, create if not exist
-            try
+
+            var cart = _carts.Where(c => c.UserIdentifier == userId).FirstOrDefault();
+
+            if (cart == null) await _carts.InsertAsync(new()
             {
+                Products = new(),
+                UserIdentifier = userId
+            });
 
-                var cart = _carts.Where(c => c.UserIdentifier == userId).FirstOrDefault();
+            cart = _carts.Where(c => c.UserIdentifier == userId).FirstOrDefault();
+            cart!.Products.Add(product);
 
-                if (cart == null) await _carts.InsertAsync(new()
-                {
-                    Products = new(),
-                    UserIdentifier = userId
-                });
-
-                cart = _carts.Where(c => c.UserIdentifier == userId).FirstOrDefault();
-                cart!.Products.Add(product);
-
-                await _carts.UpdateAsync(cart);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            await _carts.UpdateAsync(cart);
         }
     }
 }
