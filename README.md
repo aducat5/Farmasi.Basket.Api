@@ -22,5 +22,5 @@ This app contains three main parts;
   - open a terminal
   - cd *Farmasi.Basket.Api*
   - dotnet publish
-  - dotnet .\CognizantGallery.Web.Api\bin\Debug\net5.0\publish\CognizantGallery.Web.Api.dll
+  - dotnet .\Farmasi.Basket.Api\bin\Debug\net6.0\publish\Farmasi.Basket.Api.dll
 
